@@ -1,0 +1,20 @@
+{
+  "name": "porellasmap",
+  "version": "1.0.0",
+  "description": "Backend API para Por Ellas Map",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/porellasmx/porellasmap-backend.git"
+  },
+  "author": "Patricio Vargas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/porellasmx/porellasmap-backend/issues"
+  },
+  "homepage": "https://github.com/porellasmx/porellasmap-backend#readme"
+}
