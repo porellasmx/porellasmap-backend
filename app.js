@@ -18,6 +18,16 @@ app.use((req, res, next) => {
 });
 
 //Middleware
+
+app.post('/api/reports', (req, res, next) => {
+  const reports = req.body;
+  console.log(reports);
+  res.status(201).json({
+    message: 'Report created successfully',
+    report: report
+  });
+});
+
 app.use('/api/reports', (req, res, next) => {
   res.status(200).json({
     message: 'Reports fetched successfully',
