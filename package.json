@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/porellasmx/porellasmap-backend/issues"
   },
-  "homepage": "https://github.com/porellasmx/porellasmap-backend#readme"
+  "homepage": "https://github.com/porellasmx/porellasmap-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
