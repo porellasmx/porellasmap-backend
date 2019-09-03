@@ -31,7 +31,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//Middleware
+//CRUD
 
 //Creating a new Report
 app.post('/api/reports', (req, res, next) => {
@@ -65,6 +65,7 @@ app.post('/api/reports', (req, res, next) => {
     });
 });
 
+//Getting all reports
 app.get('/api/reports', (req, res, next) => {
   Report.find()
     .then(docs => {
@@ -80,6 +81,7 @@ app.get('/api/reports', (req, res, next) => {
     });
 });
 
+//Deleting report by Id
 app.delete('/api/reports/:id', (req, res, next) => {
   Report.deleteOne({ _id: req.params.id })
     .then(report => {
