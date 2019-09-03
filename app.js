@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Report = require('./models/report');
 const app = express();
 
+//DB Connection
 mongoose
   .connect(
     'mongodb+srv://porellas-generic:Policia92@porellasmap-cluster-tgcab.mongodb.net/porellasmap',
@@ -49,7 +50,6 @@ app.post('/api/reports', (req, res, next) => {
   report
     .save()
     .then(createdReport => {
-      console.log('reporte', createdReport);
       res.status(201).json({
         message: 'Report added successfully',
         post: {
