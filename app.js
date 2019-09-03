@@ -6,7 +6,7 @@ const app = express();
 
 mongoose
   .connect(
-    'mongodb+srv://<username>:<password>@porellasmap-cluster-tgcab.mongodb.net/porellasmap',
+    'mongodb+srv://porellas-generic:Policia92@porellasmap-cluster-tgcab.mongodb.net/porellasmap',
     { useCreateIndex: true, useNewUrlParser: true }
   )
   .then(() => {
@@ -56,10 +56,20 @@ app.post('/api/reports', (req, res, next) => {
 });
 
 app.get('/api/reports', (req, res, next) => {
-  res.status(200).json({
-    message: 'Reports fetched successfully',
-    reports: reports
-  });
+  Report.find()
+    .then(docs => {
+      res.status(200).json({
+        message: 'Reports fetched successfully',
+        reports: docs
+      });
+    })
+    .catch(() => {
+      console.log('Connection to DB Failed');
+      res.status(400).json({
+        message: `Report couldn't get fetched`,
+        reports: docs
+      });
+    });
 });
 
 app.use((req, res, next) => {
