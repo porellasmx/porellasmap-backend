@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const reportSchema = mongoose.Schema({
-  address: { type: String, required: false },
+  address: { type: String, required: true },
   placeName: { type: String, required: true },
   description: { type: String, required: true },
   abuseType: { type: String, required: true },
