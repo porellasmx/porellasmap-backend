@@ -5,17 +5,19 @@ const Report = require('./models/report');
 const app = express();
 
 //DB Connection
-mongoose
-  .connect(
-    'mongodb+srv://porellas-generic:Policia92@porellasmap-cluster-tgcab.mongodb.net/porellasmap',
-    { useCreateIndex: true, useNewUrlParser: true }
-  )
-  .then(() => {
-    console.log('Connected to DB');
-  })
-  .catch(() => {
+getConnection = async () => {
+  try {
+    await mongoose.connect(
+      'mongodb+srv://porellas-generic:Policia92@porellasmap-cluster-tgcab.mongodb.net/porellasmap',
+      { useCreateIndex: true, useNewUrlParser: true }
+    );
+    console.log('Connection to DB Successful');
+  } catch (err) {
     console.log('Connection to DB Failed');
-  });
+  }
+};
+
+getConnection();
 
 //BODY PARSER
 app.use(bodyParser.json());
