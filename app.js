@@ -45,14 +45,24 @@ app.post('/api/reports', (req, res, next) => {
     lat: req.body.lat,
     long: req.body.long
   });
-  console.log(report);
 
-  report.save();
-
-  res.status(201).json({
-    message: 'Report created successfully',
-    report: report
-  });
+  report
+    .save()
+    .then(createdReport => {
+      console.log('reporte', createdReport);
+      res.status(201).json({
+        message: 'Report added successfully',
+        post: {
+          ...createdReport._doc,
+          id: createdReport._id
+        }
+      });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Creating report failed!'
+      });
+    });
 });
 
 app.get('/api/reports', (req, res, next) => {
@@ -63,17 +73,27 @@ app.get('/api/reports', (req, res, next) => {
         reports: docs
       });
     })
-    .catch(() => {
-      console.log('Connection to DB Failed');
-      res.status(400).json({
-        message: `Report couldn't get fetched`,
-        reports: docs
+    .catch(error => {
+      res.status(500).json({
+        message: 'Fetching post failed!'
       });
     });
 });
 
-app.use((req, res, next) => {
-  res.send('hello from nodejs');
+app.delete('/api/reports/:id', (req, res, next) => {
+  Report.deleteOne({ _id: req.params.id })
+    .then(report => {
+      if (report.n > 0) {
+        res.status(200).json({ message: 'Deletion successful!' });
+      } else {
+        res.status(401).json({ message: 'Not authorized!' });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Fetching post failed!'
+      });
+    });
 });
 
 module.exports = app;
