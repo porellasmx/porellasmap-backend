@@ -44,9 +44,9 @@ app.post('/api/reports', (req, res, next) => {
     description: req.body.description,
     abuseType: req.body.abuseType,
     dateOfEvent: req.body.dateOfEvent,
-    image: req.body.image,
-    lat: req.body.lat,
-    long: req.body.long
+    imageName: req.body.imageName,
+    lat: req.body.marker.lat,
+    long: req.body.marker.long
   });
 
   report
@@ -54,15 +54,17 @@ app.post('/api/reports', (req, res, next) => {
     .then(createdReport => {
       res.status(201).json({
         message: 'Report added successfully',
-        post: {
+        report: {
           ...createdReport._doc,
           id: createdReport._id
-        }
+        },
+        status: 201
       });
     })
     .catch(error => {
       res.status(500).json({
-        message: 'Creating report failed!'
+        message: 'Creating report failed!',
+        error: error
       });
     });
 });
@@ -73,12 +75,14 @@ app.get('/api/reports', (req, res, next) => {
     .then(docs => {
       res.status(200).json({
         message: 'Reports fetched successfully',
-        reports: docs
+        reports: docs,
+        status: 200
       });
     })
     .catch(error => {
       res.status(500).json({
-        message: 'Fetching post failed!'
+        message: 'Fetching post failed!',
+        status: 500
       });
     });
 });
