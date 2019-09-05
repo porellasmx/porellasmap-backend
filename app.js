@@ -46,7 +46,11 @@ app.post('/api/reports', (req, res, next) => {
     dateOfEvent: req.body.dateOfEvent,
     imageName: req.body.imageName,
     lat: req.body.marker.lat,
-    long: req.body.marker.long
+    long: req.body.marker.long,
+    zipcode: req.body.zipcode,
+    city: req.body.city,
+    state: req.body.state,
+    country: req.body.country
   });
 
   report
@@ -55,8 +59,7 @@ app.post('/api/reports', (req, res, next) => {
       res.status(201).json({
         message: 'Report added successfully',
         report: {
-          ...createdReport._doc,
-          id: createdReport._id
+          ...createdReport._doc
         },
         status: 201
       });
