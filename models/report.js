@@ -8,7 +8,11 @@ const reportSchema = mongoose.Schema({
   dateOfEvent: { type: Date, required: true },
   image: { type: String, required: false },
   lat: { type: Number, required: true },
-  long: { type: Number, required: true }
+  long: { type: Number, required: true },
+  zipcode: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  country: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Report', reportSchema);
