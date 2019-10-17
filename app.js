@@ -44,6 +44,7 @@ app.post('/api/reports', (req, res, next) => {
     description: req.body.description,
     abuseType: req.body.abuseType,
     dateOfEvent: req.body.dateOfEvent,
+    timeOfEvent: req.body.timeOfEvent,
     imageName: req.body.imageName,
     lat: req.body.marker.lat,
     long: req.body.marker.long,
