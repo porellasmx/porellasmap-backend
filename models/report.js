@@ -6,6 +6,7 @@ const reportSchema = mongoose.Schema({
   description: { type: String, required: true },
   abuseType: { type: String, required: true },
   dateOfEvent: { type: Date, required: true },
+  timeOfEvent: { type: String, required: true },
   image: { type: String, required: false },
   lat: { type: Number, required: true },
   long: { type: Number, required: true },
