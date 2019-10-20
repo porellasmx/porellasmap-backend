@@ -45,15 +45,16 @@ app.post('/api/reports', upload.array('image', 1), (req, res, next) => {
     description: req.body.description,
     abuseType: req.body.abuseType,
     dateOfEvent: req.body.dateOfEvent,
-    image: req.file.originalname,
+    timeOfEvent: req.body.timeOfEvent,
     lat: req.body.lat,
     long: req.body.long,
     zipcode: req.body.zipcode,
     city: req.body.city,
     state: req.body.state,
-    country: req.body.country
+    country: req.body.country,
+    image: req.file.originalname
   });
-
+  console.log(report);
   report
     .save()
     .then(createdReport => {
