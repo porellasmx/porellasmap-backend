@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Report = require('./models/report');
 const app = express();
+const upload = require('./middleware/file-uploader');
 
 //DB Connection
 getConnection = async () => {
@@ -37,16 +38,16 @@ app.use((req, res, next) => {
 //CRUD
 
 //Creating a new Report
-app.post('/api/reports', (req, res, next) => {
+app.post('/api/reports', upload.array('image', 1), (req, res, next) => {
   const report = new Report({
     address: req.body.address,
     placeName: req.body.placeName,
     description: req.body.description,
     abuseType: req.body.abuseType,
     dateOfEvent: req.body.dateOfEvent,
-    imageName: req.body.imageName,
-    lat: req.body.marker.lat,
-    long: req.body.marker.long,
+    image: req.file.originalname,
+    lat: req.body.lat,
+    long: req.body.long,
     zipcode: req.body.zipcode,
     city: req.body.city,
     state: req.body.state,
