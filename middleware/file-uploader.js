@@ -3,8 +3,8 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 
 aws.config.update({
-  secretAccessKey: 'yULR3hPKLlackyu35TiHbHQugz5WMdZ2x/QgWHfX',
-  accessKeyId: 'AKIAJEIXOCFWNXFW5QPA',
+  secretAccessKey: process.env.secretAccessKey.trim(),
+  accessKeyId: process.env.accessKeyId.trim(),
   region: 'us-east-1'
 });
 
@@ -25,7 +25,7 @@ const upload = multer({
     bucket: 'porellas',
     key: function(req, file, cb) {
       req.file = file;
-      cb(null, file.originalname + Date.now());
+      cb(null, Date.now() + file.originalname);
     }
   })
 });
